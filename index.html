@@ -11,12 +11,30 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    
         #map {
-            width: 1634px;
-            height: 884px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
     </style>
+    
+    
     <title></title>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.coordinates/dist/Leaflet.Coordinates.css" />
+    <script src="https://unpkg.com/leaflet.coordinates/dist/Leaflet.Coordinates.min.js"></script>
+    
+
 </head>
 <body>
 <div id="map"></div>
@@ -35,6 +53,44 @@
     var map = L.map('map', {
         zoomControl: true, maxZoom: 28, minZoom: 1
     }).fitBounds([[39.755058425, -86.09171909285715], [39.782453974999996, -86.04102800714287]]);
+
+
+    var coordinatesControl = new L.Control.Coordinates({
+    position: 'bottomleft',
+    decimals: 4
+});
+coordinatesControl.addTo(map);
+
+
+map.on('click', function(e) {
+    coordinatesControl.setCoordinates(e);
+});
+
+
+    L.control.coordinates({
+    position: 'bottomleft',
+    decimals: 2,
+    decimalSeperator: '.',
+    labelTemplateLat: 'Latitude: {y}',
+    labelTemplateLng: 'Longitude: {x}',
+    enableUserInput: true,
+    useDMS: false,
+    useLatLngOrder: true,
+    markerType: L.marker,
+    markerProps: {},
+    labelFormatterLng: function(lng) {
+        return lng + ' lng';
+    },
+    labelFormatterLat: function(lat) {
+        return lat + ' lat';
+    },
+    customLabelFcn: function(latLonObj, opts) {
+        return 'Geohash: ' + encodeGeoHash(latLonObj.lat, latLonObj.lng);
+    }
+}).addTo(map);
+
+
+
     var hash = new L.Hash(map);
     map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
     var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
