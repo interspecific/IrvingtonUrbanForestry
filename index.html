@@ -148,33 +148,33 @@ L.control.layers(baseMaps, {
 
 setBounds();
 
-var legend = L.control({ position: 'bottomright' });
+// var legend = L.control({ position: 'bottomright' });
 
-legend.onAdd = function (map) {
-    var div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = '<h4>Legend</h4>' +
-        '<div class="legend-item"><img src="legend/reprojectedclassified_0_0.png" alt="Tree" /> Trees</div>' +
-        '<div class="legend-item"><img src="legend/reprojectedclassified_0_1.png" alt="Non-Tree" /> Non-Trees</div>';
-    return div;
-};
+// legend.onAdd = function (map) {
+//     var div = L.DomUtil.create('div', 'info legend');
+//     div.innerHTML = '<h4>Legend</h4>' +
+//         '<div class="legend-item"><img src="legend/reprojectedclassified_0_0.png" alt="Tree" /> Trees</div>' +
+//         '<div class="legend-item"><img src="legend/reprojectedclassified_0_1.png" alt="Non-Tree" /> Non-Trees</div>';
+//     return div;
+// };
 
 // legend.addTo(map);
 
-// L.control.coordinates({
-// 	position:"bottomleft", //optional default "bootomright"
-// 	decimals:2, //optional default 4
-// 	decimalSeperator:".", //optional default "."
-// 	labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
-// 	labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
-// 	enableUserInput:true, //optional default true
-// 	useDMS:false, //optional default false
-// 	useLatLngOrder: true, //ordering of labels, default false-> lng-lat
-// 	markerType: L.marker, //optional default L.marker
-// 	markerProps: {}, //optional default {},
-// 	labelFormatterLng : function(lng){return lng+" lng"}, //optional default none,
-// 	labelFormatterLat : function(lat){return lat+" lat"}, //optional default none
-// 	customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
-// }).addTo(map);
+L.control.coordinates({
+	position:"bottomleft", //optional default "bootomright"
+	decimals:2, //optional default 4
+	decimalSeperator:".", //optional default "."
+	labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
+	labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
+	enableUserInput:true, //optional default true
+	useDMS:false, //optional default false
+	useLatLngOrder: true, //ordering of labels, default false-> lng-lat
+	markerType: L.marker, //optional default L.marker
+	markerProps: {}, //optional default {},
+	labelFormatterLng : function(lng){return lng+" lng"}, //optional default none,
+	labelFormatterLat : function(lat){return lat+" lat"}, //optional default none
+	customLabelFcn: function(latLonObj, opts) { "Geohash: " + encodeGeoHash(latLonObj.lat, latLonObj.lng)} //optional default none
+}).addTo(map);
 
 
     
@@ -187,12 +187,12 @@ legend.onAdd = function (map) {
     // //     .openPopup();
 
 
-    //var accessToken = 'pk.eyJ1IjoiZ3J1YmJzYmUiLCJhIjoiY2xqcWg1a2dpMDU3MDNqbnlxcml2Y3ZseiJ9.2HUi9z-rsxqrWvkpaha4kg';
-//var mapboxSatelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=' + accessToken, {
-    //attribution: 'Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>',
-   // tileSize: 512,
-    //zoomOffset: -1
-//}).addTo(map);
+    var accessToken = 'pk.eyJ1IjoiZ3J1YmJzYmUiLCJhIjoiY2xqcWg1a2dpMDU3MDNqbnlxcml2Y3ZseiJ9.2HUi9z-rsxqrWvkpaha4kg';
+var mapboxSatelliteLayer = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=' + accessToken, {
+    attribution: 'Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>',
+   tileSize: 512,
+    zoomOffset: -1
+}).addTo(map);
 
 </script>
 </body>
